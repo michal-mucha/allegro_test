@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Qqg24xBP4NnDWWcg3MzGJqJeoo9+wiAmj0UU35t8qmuVvWr4GIrAXWqH1y/GA8YBeFamrYUcNBxUyMNmkfoL5w==",
+  "dgSpecHash": "2idTQWgYvltCBNJdU6m4QTkxF91dhfi9IEGnvJjt1Oa50StZYNZipouSNpG1VhE3OApROlzpyUrMixfVglDSRQ==",
   "success": true,
-  "projectFilePath": "C:\\home\\allegro_test\\allegro_test\\Michal.Mucha.Service1\\Michal.Mucha.Service1.Test\\Michal.Mucha.Service1.Test.csproj",
+  "projectFilePath": "c:\\home\\allegro_test\\allegro_test\\Michal.Mucha.Service1\\Michal.Mucha.Service1.Tests\\Michal.Mucha.Service1.Tests.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jpbf63\\.nuget\\packages\\coverlet.collector\\3.1.2\\coverlet.collector.3.1.2.nupkg.sha512",
     "C:\\Users\\jpbf63\\.nuget\\packages\\microsoft.codecoverage\\17.1.0\\microsoft.codecoverage.17.1.0.nupkg.sha512",

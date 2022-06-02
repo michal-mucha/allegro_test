@@ -5982,11 +5982,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "c:\\home\\allegro_test\\allegro_test\\Michal.Mucha.Service1\\Michal.Mucha.Service1.Test\\Michal.Mucha.Service1.Test.csproj",
-      "projectName": "Michal.Mucha.Service1.Test",
-      "projectPath": "c:\\home\\allegro_test\\allegro_test\\Michal.Mucha.Service1\\Michal.Mucha.Service1.Test\\Michal.Mucha.Service1.Test.csproj",
+      "projectUniqueName": "c:\\home\\allegro_test\\allegro_test\\Michal.Mucha.Service1\\Michal.Mucha.Service1.Tests\\Michal.Mucha.Service1.Tests.csproj",
+      "projectName": "Michal.Mucha.Service1.Tests",
+      "projectPath": "c:\\home\\allegro_test\\allegro_test\\Michal.Mucha.Service1\\Michal.Mucha.Service1.Tests\\Michal.Mucha.Service1.Tests.csproj",
       "packagesPath": "C:\\Users\\jpbf63\\.nuget\\packages\\",
-      "outputPath": "c:\\home\\allegro_test\\allegro_test\\Michal.Mucha.Service1\\Michal.Mucha.Service1.Test\\obj\\",
+      "outputPath": "c:\\home\\allegro_test\\allegro_test\\Michal.Mucha.Service1\\Michal.Mucha.Service1.Tests\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jpbf63\\AppData\\Roaming\\NuGet\\NuGet.Config"
