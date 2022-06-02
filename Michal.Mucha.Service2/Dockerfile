@@ -13,4 +13,4 @@ FROM mcr.microsoft.com/dotnet/aspnet:6.0
 WORKDIR /app
 COPY --from=build-env /app/out .
 EXPOSE 80
-ENTRYPOINT ["dotnet", "Michal.Mucha.Service3.dll"]
+ENTRYPOINT ["dotnet", "Michal.Mucha.Service2.dll"]
