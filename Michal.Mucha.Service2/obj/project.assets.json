@@ -213,11 +213,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\home\\allegro_test\\allegro_test\\Michal.Mucha.Service2\\Michal.Mucha.Service2.csproj",
+      "projectUniqueName": "C:\\home\\allegro_test\\Michal.Mucha.Service2\\Michal.Mucha.Service2.csproj",
       "projectName": "Michal.Mucha.Service2",
-      "projectPath": "C:\\home\\allegro_test\\allegro_test\\Michal.Mucha.Service2\\Michal.Mucha.Service2.csproj",
+      "projectPath": "C:\\home\\allegro_test\\Michal.Mucha.Service2\\Michal.Mucha.Service2.csproj",
       "packagesPath": "C:\\Users\\jpbf63\\.nuget\\packages\\",
-      "outputPath": "C:\\home\\allegro_test\\allegro_test\\Michal.Mucha.Service2\\obj\\",
+      "outputPath": "C:\\home\\allegro_test\\Michal.Mucha.Service2\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\jpbf63\\AppData\\Roaming\\NuGet\\NuGet.Config"

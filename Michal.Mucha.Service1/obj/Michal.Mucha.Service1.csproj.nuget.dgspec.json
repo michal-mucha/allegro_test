@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\home\\allegro_test\\allegro_test\\Michal.Mucha.Service1\\Michal.Mucha.Service1.csproj": {}
+    "C:\\home\\allegro_test\\Michal.Mucha.Service1\\Michal.Mucha.Service1.csproj": {}
   },
   "projects": {
-    "C:\\home\\allegro_test\\allegro_test\\Michal.Mucha.Service1\\Michal.Mucha.Service1.csproj": {
+    "C:\\home\\allegro_test\\Michal.Mucha.Service1\\Michal.Mucha.Service1.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\home\\allegro_test\\allegro_test\\Michal.Mucha.Service1\\Michal.Mucha.Service1.csproj",
+        "projectUniqueName": "C:\\home\\allegro_test\\Michal.Mucha.Service1\\Michal.Mucha.Service1.csproj",
         "projectName": "Michal.Mucha.Service1",
-        "projectPath": "C:\\home\\allegro_test\\allegro_test\\Michal.Mucha.Service1\\Michal.Mucha.Service1.csproj",
+        "projectPath": "C:\\home\\allegro_test\\Michal.Mucha.Service1\\Michal.Mucha.Service1.csproj",
         "packagesPath": "C:\\Users\\jpbf63\\.nuget\\packages\\",
-        "outputPath": "C:\\home\\allegro_test\\allegro_test\\Michal.Mucha.Service1\\obj\\",
+        "outputPath": "C:\\home\\allegro_test\\Michal.Mucha.Service1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\jpbf63\\AppData\\Roaming\\NuGet\\NuGet.Config"

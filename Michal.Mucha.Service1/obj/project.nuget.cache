@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "5zzg5v5l7LjivB53ZdP1QXyNj8nO/nOxhFqoFLutA4Umw9X1V8+RODhy5ofo0yrgD0Qo8Bvs00PzMIClrioImw==",
+  "dgSpecHash": "IHPIxhYUgYE4EDTcH2CTR/i4xSp16vxuryGX1SdYr0qLCPGKVPdCFoZLB6/rNTwGonKVRh4A7xkpad4RSAYHaw==",
   "success": true,
-  "projectFilePath": "C:\\home\\allegro_test\\allegro_test\\Michal.Mucha.Service1\\Michal.Mucha.Service1.csproj",
+  "projectFilePath": "C:\\home\\allegro_test\\Michal.Mucha.Service1\\Michal.Mucha.Service1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jpbf63\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
     "C:\\Users\\jpbf63\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
