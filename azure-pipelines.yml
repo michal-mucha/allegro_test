@@ -34,10 +34,16 @@ jobs:
       inputs:
         command: 'test'
         projects: '$(serviceName).Tests/$(serviceName).Tests.csproj'
+    - pwsh: |
+      $lowercase = $env:$serviceName.ToLower()
+      Write-Host "##vso[task.setvariable variable=serviceNameLowerCase;]$lowercase"
+      env:
+        servicename: $(serviceName)
+
     - task: Docker@2
       displayName: Build an image
       inputs:
-        repository: $(dockerId)/lower($(serviceName))
+        repository: $(dockerId)/$(serviceNameLowerCase)
         command: build
         Dockerfile: $(serviceName)/Dockerfile
     - task: Docker@2
@@ -45,5 +51,5 @@ jobs:
       inputs:
         containerRegistry: |
           $(dockerHub)
-        repository: $(dockerId)/lower($(serviceName))
+        repository: $(dockerId)/$(serviceNameLowerCase)
         command: push
