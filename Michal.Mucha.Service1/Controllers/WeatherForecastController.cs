@@ -4,7 +4,7 @@ namespace Michal.Mucha.Service1.Controllers;
 
 [ApiController]
 [Route("[controller]")]
-public class WeatherForecastControllerr : ControllerBase
+public class WeatherForecastController : ControllerBase
 {
     private static readonly string[] Summaries = new[]
     {
