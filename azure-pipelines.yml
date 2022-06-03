@@ -47,5 +47,3 @@ jobs:
           $(dockerHub)
         repository: $(repository)
         command: push
-        tags: |
-          $(tag)
