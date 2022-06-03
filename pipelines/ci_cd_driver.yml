@@ -1,3 +1,6 @@
+#Docker file to be only take app build outside - just for piepline efficiency
+#Must be .net 3.1 if I used in docker app build outside maybe will be enough
+
 trigger:
 - main
 
