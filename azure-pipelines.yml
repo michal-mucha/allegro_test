@@ -13,7 +13,7 @@ pool:
   vmImage: 'windows-latest'
 variables:
   imageName: 'Michal.Mucha.Service1'
-  dockerHub: 'michalmuchadocker/allegro_test'
+  dockerHub: 'docker_hub'
 
 jobs:
   - job: build_application
