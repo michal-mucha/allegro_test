@@ -13,7 +13,7 @@ variables:
 
 jobs:
   - job: build_application
-    displayName: $(serviceName)
+    displayName: '$(serviceName)'
     steps:
     - task: DotNetCoreCLI@2
       displayName: 'Restores the dependencies and tools of a project'
