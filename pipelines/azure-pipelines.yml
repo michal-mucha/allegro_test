@@ -1,0 +1,49 @@
+parameters:
+  - name: serviceName
+
+jobs:
+  - job:
+    displayName: ${{ parameters.serviceName }}
+    steps:
+    - task: DotNetCoreCLI@2
+      displayName: 'Restores the dependencies and tools of a project'
+      inputs:
+        command: 'restore'
+        projects: '${{ parameters.serviceName }}/*.csproj'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Build ${{ parameters.serviceName }}'
+      inputs:
+        command: 'build'
+        projects: '${{ parameters.serviceName }}/*.csproj'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Test ${{ parameters.serviceName }}'
+      inputs:
+        command: 'test'
+        projects: '${{ parameters.serviceName }}.Tests/${{ parameters.serviceName }}.Tests.csproj'
+
+    - pwsh: |
+        $lowercase = $env:servicename.ToLower()
+        Write-Host "##vso[task.setvariable variable=serviceNameLowerCase;]$lowercase"
+      displayName: Convert service name to lowercase
+      env:
+        servicename: ${{ parameters.serviceName }}
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+
+    - task: Docker@2
+      displayName: Build an image of ${{ parameters.serviceName }}
+      inputs:
+        repository: $(dockerId)/$(serviceNameLowerCase)
+        command: build
+        Dockerfile: ${{ parameters.serviceName }}/Dockerfile
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+
+    - task: Docker@2
+      displayName: Push image of ${{ parameters.serviceName }} to $(dockerId)/$(serviceNameLowerCase)
+      inputs:
+        containerRegistry: |
+          $(dockerHub)
+        repository: $(dockerId)/$(serviceNameLowerCase)
+        command: push
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))

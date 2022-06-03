@@ -1,0 +1,28 @@
+trigger:
+- main
+
+pr:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+#this typically would go to some config_file.ps1
+#delivered later as env. varaiables on agent
+#not done such just for simplicity
+variables:
+  dockerHub: 'docker_hub'
+  dockerId: 'michalmuchadocker'
+
+#jobs would run in parallel if parallel jobs paid
+#here in free license they will wait each for other
+jobs:
+  - template: /pipelines/azure-pipelines.yml
+    parameters:
+      serviceName: 'Michal.Mucha.Service1'
+  - template: /pipelines/azure-pipelines.yml
+    parameters:
+      serviceName: 'Michal.Mucha.Service2'
+  - template: /pipelines/azure-pipelines.yml
+    parameters:
+      serviceName: 'Michal.Mucha.Service3'
