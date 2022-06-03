@@ -1,0 +1,24 @@
+trigger:
+- main
+
+pr:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+variables:
+  dockerHub: 'docker_hub'
+  dockerId: 'michalmuchadocker'
+
+
+jobs:
+  - template: /azure-pipelines.yml
+    parameters:
+      serviceName: 'Michal.Mucha.Service1'
+  - template: /azure-pipelines.yml
+    parameters:
+      serviceName: 'Michal.Mucha.Service2'
+  - template: /azure-pipelines.yml
+    parameters:
+      serviceName: 'Michal.Mucha.Service3'
