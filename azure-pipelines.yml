@@ -14,7 +14,7 @@ pool:
 variables:
   serviceName: 'michal.mucha.service1'
   dockerHub: 'docker_hub'
-  imageName: 'michalmuchadocker/allegro_test/$(serviceName)'
+  imageName: 'michalmuchadocker/$(serviceName)'
 
 jobs:
   - job: build_application
