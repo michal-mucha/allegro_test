@@ -20,27 +20,27 @@ jobs:
     pool:
         vmImage: 'windows-latest'
     steps:
-    - task: DotNetCoreCLI@2
-      displayName: 'dotnet restore'
-      inputs:
-        command: 'restore'
-        projects: 'Michal.Mucha.Service1/*.csproj'
-    - task: DotNetCoreCLI@2
-      displayName: 'dotnet build'
-      inputs:
-        command: 'build'
-        projects: 'Michal.Mucha.Service1/*.csproj'
-    - task: DotNetCoreCLI@2
-      displayName: 'dotnet test TestProject'
-      inputs:
-        command: 'test'
-        projects: 'Michal.Mucha.Service1.Tests/Michal.Mucha.Service1.Tests.csproj'
+    #- task: DotNetCoreCLI@2
+    #  displayName: 'dotnet restore'
+    #  inputs:
+    #    command: 'restore'
+    #    projects: 'Michal.Mucha.Service1/*.csproj'
+    #- task: DotNetCoreCLI@2
+    #  displayName: 'dotnet build'
+    #  inputs:
+    #    command: 'build'
+    #    projects: 'Michal.Mucha.Service1/*.csproj'
+    #- task: DotNetCoreCLI@2
+    #  displayName: 'dotnet test TestProject'
+    #  inputs:
+    #    command: 'test'
+    #    projects: 'Michal.Mucha.Service1.Tests/Michal.Mucha.Service1.Tests.csproj'
     - task: Docker@2
       displayName: Build an image
       inputs:
         repository: $(imageName)
         command: build
-        Dockerfile: app/Dockerfile    
+        Dockerfile: Dockerfile    
     - task: Docker@2
       displayName: Push image
       inputs:
