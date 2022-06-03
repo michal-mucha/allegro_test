@@ -33,8 +33,9 @@ jobs:
         projects: '$(serviceName).Tests/$(serviceName).Tests.csproj'
 
     - pwsh: |
-        $lowercase = $env:serviceName.ToLower()
+        $lowercase = $env:servicename.ToLower()
         Write-Host "##vso[task.setvariable variable=serviceNameLowerCase;]$lowercase"
+      displayName: Convert service name to lowercase
       env:
         servicename: $(serviceName)
 
