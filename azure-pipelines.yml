@@ -15,19 +15,19 @@ jobs:
   - job: build_application
     steps:
     - task: DotNetCoreCLI@2
-      displayName: 'dotnet restore'
+      displayName: 'Restores the dependencies and tools of a project'
       inputs:
         command: 'restore'
         projects: '$(serviceName)/*.csproj'
 
     - task: DotNetCoreCLI@2
-      displayName: 'dotnet build'
+      displayName: 'Build $(serviceName)'
       inputs:
         command: 'build'
         projects: '$(serviceName)/*.csproj'
 
     - task: DotNetCoreCLI@2
-      displayName: 'dotnet test TestProject'
+      displayName: 'Test $(serviceName)'
       inputs:
         command: 'test'
         projects: '$(serviceName).Tests/$(serviceName).Tests.csproj'
@@ -40,14 +40,14 @@ jobs:
         servicename: $(serviceName)
 
     - task: Docker@2
-      displayName: Build an image
+      displayName: Build an image of $(serviceName)
       inputs:
         repository: $(dockerId)/$(serviceNameLowerCase)
         command: build
         Dockerfile: $(serviceName)/Dockerfile
 
     - task: Docker@2
-      displayName: Push image
+      displayName: Push image of $(serviceName) to $(dockerId)/$(serviceNameLowerCase)
       inputs:
         containerRegistry: |
           $(dockerHub)
