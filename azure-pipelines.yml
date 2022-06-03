@@ -31,6 +31,8 @@ jobs:
         command: 'test'
         projects: 'Michal.Mucha.Service1.Tests/Michal.Mucha.Service1.Tests.csproj'
 
+
+
 #- script: dotnet test <test-project> --logger trx
 #- task: PublishTestResults@2
 #  condition: succeededOrFailed()
