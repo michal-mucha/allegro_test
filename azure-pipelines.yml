@@ -12,7 +12,7 @@ pr:
 pool:
   vmImage: 'ubuntu-latest'
 variables:
-  serviceName: 'Michal.Mucha.Service1'
+  serviceName: 'michal.mucha.service1'
   dockerHub: 'docker_hub'
   imageName: 'michalmuchadocker/allegro_test/$(serviceName)'
 
