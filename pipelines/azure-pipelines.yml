@@ -9,7 +9,7 @@ jobs:
       displayName: 'Use .NET Core sdk 3.1.x'
       inputs:
         packageType: sdk
-        version: 6.0
+        version: 6.x
         installationPath: $(Agent.ToolsDirectory)/dotnet
 
     - task: DotNetCoreCLI@2
