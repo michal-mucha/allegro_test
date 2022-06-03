@@ -1,67 +1,46 @@
 parameters:
-  - name: MichalMuchaService1
-    type: boolean
-    default: false
-  - name: MichalMuchaService2
-    type: boolean
-    default: false
-  - name: MichalMuchaService3
-    type: boolean
-    default: false
-
-trigger:
-- main
-
-pr:
-- main
-
-pool:
-  vmImage: 'ubuntu-latest'
-variables:
-  serviceName: 'Michal.Mucha.Service1'
-  dockerHub: 'docker_hub'
-  dockerId: 'michalmuchadocker'
+  - serviceName
 
 jobs:
   - job: build_application
-    displayName: ${{ parameters.MichalMuchaService1 }}
+    displayName: ${{ parameters.serviceName }}
     steps:
     - task: DotNetCoreCLI@2
       displayName: 'Restores the dependencies and tools of a project'
       inputs:
         command: 'restore'
-        projects: '$(serviceName)/*.csproj'
+        projects: '${{ parameters.serviceName }}/*.csproj'
 
     - task: DotNetCoreCLI@2
-      displayName: 'Build $(serviceName)'
+      displayName: 'Build ${{ parameters.serviceName }}'
       inputs:
         command: 'build'
-        projects: '$(serviceName)/*.csproj'
+        projects: '${{ parameters.serviceName }}/*.csproj'
 
     - task: DotNetCoreCLI@2
-      displayName: 'Test $(serviceName)'
+      displayName: 'Test ${{ parameters.serviceName }}'
       inputs:
         command: 'test'
-        projects: '$(serviceName).Tests/$(serviceName).Tests.csproj'
+        projects: '${{ parameters.serviceName }}.Tests/${{ parameters.serviceName }}.Tests.csproj'
 
     - pwsh: |
         $lowercase = $env:servicename.ToLower()
         Write-Host "##vso[task.setvariable variable=serviceNameLowerCase;]$lowercase"
       displayName: Convert service name to lowercase
       env:
-        servicename: $(serviceName)
+        servicename: ${{ parameters.serviceName }}
       condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
 
     - task: Docker@2
-      displayName: Build an image of $(serviceName)
+      displayName: Build an image of ${{ parameters.serviceName }}
       inputs:
         repository: $(dockerId)/$(serviceNameLowerCase)
         command: build
-        Dockerfile: $(serviceName)/Dockerfile
+        Dockerfile: ${{ parameters.serviceName }}/Dockerfile
       condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
 
     - task: Docker@2
-      displayName: Push image of $(serviceName) to $(dockerId)/$(serviceNameLowerCase)
+      displayName: Push image of ${{ parameters.serviceName }} to $(dockerId)/$(serviceNameLowerCase)
       inputs:
         containerRegistry: |
           $(dockerHub)
