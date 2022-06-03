@@ -12,9 +12,9 @@ pr:
 pool:
   vmImage: 'ubuntu-latest'
 variables:
-  imageName: 'Michal.Mucha.Service1'
+  tag: 'Michal.Mucha.Service1'
   dockerHub: 'docker_hub'
-  repository: 'allegro_test'
+  repository: 'michalmuchadocker/allegro_test'
 
 jobs:
   - job: build_application
@@ -47,3 +47,5 @@ jobs:
           $(dockerHub)
         repository: $(repository)
         command: push
+        tags: |
+          $(tag)
