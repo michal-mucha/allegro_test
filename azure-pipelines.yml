@@ -1,5 +1,5 @@
 parameters:
-  - serviceName
+  - name: serviceName
 
 jobs:
   - job: build_application
