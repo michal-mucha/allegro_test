@@ -2,7 +2,7 @@ parameters:
   - name: serviceName
 
 jobs:
-  - job: build_application_${{ parameters.serviceName }}
+  - job:
     displayName: ${{ parameters.serviceName }}
     steps:
     - task: DotNetCoreCLI@2
