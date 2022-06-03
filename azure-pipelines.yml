@@ -7,13 +7,33 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'windows-latest'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+jobs:
+  - job: build_application
+    pool:
+        vmImage: 'windows-latest'
+    steps:
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet restore'
+      inputs:
+        command: 'restore'
+        projects: 'Michal.Mucha.Service1/*.csproj'
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet build'
+      inputs:
+        command: 'build'
+        projects: 'Michal.Mucha.Service1/*.csproj'
+    - task: DotNetCoreCLI@2
+      displayName: 'dotnet test TestProject'
+      inputs:
+        command: 'test'
+        projects: 'Michal.Mucha.Service1.Tests/Michal.Mucha.Service1.Tests.csproj'
+
+#- script: dotnet test <test-project> --logger trx
+#- task: PublishTestResults@2
+#  condition: succeededOrFailed()
+#  inputs:
+#    testRunner: VSTest
+#    testResultsFiles: '**/*.trx'
