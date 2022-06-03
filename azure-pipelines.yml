@@ -1,8 +1,3 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
 - main
 
@@ -12,38 +7,49 @@ pr:
 pool:
   vmImage: 'ubuntu-latest'
 variables:
-  serviceName: 'michal.mucha.service1'
+  serviceName: 'Michal.Mucha.Service1'
   dockerHub: 'docker_hub'
-  imageName: 'michalmuchadocker/$(serviceName)'
+  dockerId: 'michalmuchadocker'
 
 jobs:
   - job: build_application
     steps:
-   #- task: DotNetCoreCLI@2
-   #  displayName: 'dotnet restore'
-   #  inputs:
-   #    command: 'restore'
-   #    projects: 'Michal.Mucha.Service1/*.csproj'
-   #- task: DotNetCoreCLI@2
-   #  displayName: 'dotnet build'
-   #  inputs:
-   #    command: 'build'
-   #    projects: 'Michal.Mucha.Service1/*.csproj'
-   #- task: DotNetCoreCLI@2
-   #  displayName: 'dotnet test TestProject'
-   #  inputs:
-   #    command: 'test'
-   #    projects: 'Michal.Mucha.Service1.Tests/Michal.Mucha.Service1.Tests.csproj'
-    - task: Docker@2
-      displayName: Build an image
+    - task: DotNetCoreCLI@2
+      displayName: 'Restores the dependencies and tools of a project'
       inputs:
-        repository: $(imageName)
-        command: build
-        Dockerfile: Michal.Mucha.Service1/Dockerfile    
+        command: 'restore'
+        projects: '$(serviceName)/*.csproj'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Build $(serviceName)'
+      inputs:
+        command: 'build'
+        projects: '$(serviceName)/*.csproj'
+
+    - task: DotNetCoreCLI@2
+      displayName: 'Test $(serviceName)'
+      inputs:
+        command: 'test'
+        projects: '$(serviceName).Tests/$(serviceName).Tests.csproj'
+
+    - pwsh: |
+        $lowercase = $env:servicename.ToLower()
+        Write-Host "##vso[task.setvariable variable=serviceNameLowerCase;]$lowercase"
+      displayName: Convert service name to lowercase
+      env:
+        servicename: $(serviceName)
+
     - task: Docker@2
-      displayName: Push image
+      displayName: Build an image of $(serviceName)
+      inputs:
+        repository: $(dockerId)/$(serviceNameLowerCase)
+        command: build
+        Dockerfile: $(serviceName)/Dockerfile
+
+    - task: Docker@2
+      displayName: Push image of $(serviceName) to $(dockerId)/$(serviceNameLowerCase)
       inputs:
         containerRegistry: |
           $(dockerHub)
-        repository: $(imageName)
+        repository: $(dockerId)/$(serviceNameLowerCase)
         command: push
