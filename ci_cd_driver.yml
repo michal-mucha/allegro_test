@@ -14,5 +14,5 @@ variables:
 
 jobs:
   - template: /azure-pipelines.yml
-      parameters:
-        serviceName: 'Michal.Mucha.Service1'
+    parameters:
+      serviceName: 'Michal.Mucha.Service1'
