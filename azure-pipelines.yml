@@ -24,7 +24,7 @@ variables:
 
 jobs:
   - job: build_application
-    displayName: '${{parameters.Michal.Mucha.Service1}}'
+    displayName: ${{ parameters.Michal.Mucha.Service1 }}
     steps:
     - task: DotNetCoreCLI@2
       displayName: 'Restores the dependencies and tools of a project'
