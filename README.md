@@ -1,1 +1,1 @@
-# allegro_test
+# Solution to the Allegro interview task  
