@@ -13,6 +13,7 @@ variables:
 
 jobs:
   - job: build_application
+    displayName: $(serviceName)
     steps:
     - task: DotNetCoreCLI@2
       displayName: 'Restores the dependencies and tools of a project'
@@ -38,6 +39,7 @@ jobs:
       displayName: Convert service name to lowercase
       env:
         servicename: $(serviceName)
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
 
     - task: Docker@2
       displayName: Build an image of $(serviceName)
@@ -45,6 +47,7 @@ jobs:
         repository: $(dockerId)/$(serviceNameLowerCase)
         command: build
         Dockerfile: $(serviceName)/Dockerfile
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
 
     - task: Docker@2
       displayName: Push image of $(serviceName) to $(dockerId)/$(serviceNameLowerCase)
@@ -53,3 +56,4 @@ jobs:
           $(dockerHub)
         repository: $(dockerId)/$(serviceNameLowerCase)
         command: push
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
