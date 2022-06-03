@@ -34,16 +34,16 @@ jobs:
       inputs:
         command: 'test'
         projects: 'Michal.Mucha.Service1.Tests/Michal.Mucha.Service1.Tests.csproj'
-     - task: Docker@2
-       displayName: Build an image
-       inputs:
-         repository: $(imageName)
-         command: build
-         Dockerfile: Michal.Mucha.Service1/Dockerfile
-     - task: Docker@2
-       displayName: Push image
-       inputs:
-         containerRegistry: |
-           $(dockerHub)
-         repository: $(imageName)
-         command: push
+    - task: Docker@2
+      displayName: Build an image
+      inputs:
+        repository: $(imageName)
+        command: build
+        Dockerfile: Michal.Mucha.Service1/Dockerfile
+    - task: Docker@2
+      displayName: Push image
+      inputs:
+        containerRegistry: |
+          $(dockerHub)
+        repository: $(imageName)
+        command: push
