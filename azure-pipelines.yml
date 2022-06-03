@@ -1,11 +1,11 @@
 parameters:
-  - name: Michal.Mucha.Service1
+  - name: MichalMuchaService1
     type: boolean
     default: false
-  - name: Michal.Mucha.Service2
+  - name: MichalMuchaService2
     type: boolean
     default: false
-  - name: Michal.Mucha.Service3
+  - name: MichalMuchaService3
     type: boolean
     default: false
 
@@ -24,7 +24,7 @@ variables:
 
 jobs:
   - job: build_application
-    displayName: ${{ parameters.Michal.Mucha.Service1 }}
+    displayName: ${{ parameters.MichalMuchaService1 }}
     steps:
     - task: DotNetCoreCLI@2
       displayName: 'Restores the dependencies and tools of a project'
