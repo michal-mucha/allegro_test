@@ -35,8 +35,8 @@ jobs:
         command: 'test'
         projects: '$(serviceName).Tests/$(serviceName).Tests.csproj'
     - pwsh: |
-      $lowercase = $env:$serviceName.ToLower()
-      Write-Host "##vso[task.setvariable variable=serviceNameLowerCase;]$lowercase"
+        $lowercase = $env:$serviceName.ToLower()
+        Write-Host "##vso[task.setvariable variable=serviceNameLowerCase;]$lowercase"
       env:
         servicename: $(serviceName)
 
