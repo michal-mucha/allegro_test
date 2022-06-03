@@ -14,7 +14,7 @@ pool:
 variables:
   serviceName: 'Michal.Mucha.Service1'
   dockerHub: 'docker_hub'
-  imageName: 'michalmuchadocker/lower($(serviceName))'
+  dockerId: 'michalmuchadocker'
 
 jobs:
   - job: build_application
@@ -37,7 +37,7 @@ jobs:
     - task: Docker@2
       displayName: Build an image
       inputs:
-        repository: $(imageName)
+        repository: $(dockerId)/lower($(serviceName))
         command: build
         Dockerfile: $(serviceName)/Dockerfile
     - task: Docker@2
@@ -45,5 +45,5 @@ jobs:
       inputs:
         containerRegistry: |
           $(dockerHub)
-        repository: $(imageName)
+        repository: $(dockerId)/lower($(serviceName))
         command: push
