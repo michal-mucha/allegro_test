@@ -1,1 +1,1 @@
-# Solution to the Allegro interview task  
+# Solution for the Allegro interview task  
