@@ -46,6 +46,8 @@ jobs:
         Dockerfile: ${{ parameters.serviceName }}/Dockerfile.template
       condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
 
+#take Dockerfile.template, replace marker {{service_name_pointer}} with service name
+#which is currently deployed and create Dockerfile in service project folder e.g Michal.Mucha.Service1
     - task: PythonScript@0
       displayName: Create Dockerfile from template
       inputs:
@@ -53,7 +55,7 @@ jobs:
         scriptPath: $(Build.SourcesDirectory)/pipelines/python_scripts/create_dockerfile_from_template.py
         arguments:  $(Build.SourcesDirectory)/Dockerfile.template $(Build.SourcesDirectory)/${{ parameters.serviceName }}/Dockerfile ${{ parameters.serviceName }}
         failOnStderr: true
-      #condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
 
     - task: Docker@2
       displayName: Push image of ${{ parameters.serviceName }} to Docker repository
