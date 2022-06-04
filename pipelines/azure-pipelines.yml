@@ -21,8 +21,7 @@ jobs:
     - task: DotNetCoreCLI@2
       displayName: 'Build ${{ parameters.serviceName }}'
       inputs:
-        command: 'publish'
-        arguments: -c Release -o out
+        command: 'build'
         projects: '${{ parameters.serviceName }}/*.csproj'
 
     - task: DotNetCoreCLI@2
