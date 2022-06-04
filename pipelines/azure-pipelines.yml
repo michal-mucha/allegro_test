@@ -7,7 +7,7 @@ parameters:
 
 jobs:
   - job:
-    dependsOn: other
+    dependsOn: ${{ parameters.dependsOn }}
     displayName: ${{ parameters.serviceName }}
     steps:
     - task: UseDotNet@2
