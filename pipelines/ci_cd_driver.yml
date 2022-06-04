@@ -14,15 +14,27 @@ variables:
   dockerHub: 'docker_hub'
   dockerId: 'michalmuchadocker'
 
-#jobs would run in parallel if parallel jobs paid
-#here in free license they will wait each for other
+
 jobs:
-  - template: /pipelines/azure-pipelines.yml
-    parameters:
-      serviceName: 'Michal.Mucha.Service1'
-  - template: /pipelines/azure-pipelines.yml
-    parameters:
-      serviceName: 'Michal.Mucha.Service2'
-  - template: /pipelines/azure-pipelines.yml
-    parameters:
-      serviceName: 'Michal.Mucha.Service3'
+  - job: service1
+    displayName: Michal.Mucha.Service1
+    steps:
+    - template: /pipelines/azure-pipelines.yml
+      parameters:
+        serviceName: Michal.Mucha.Service1
+
+  - job: service2
+    displayName: Michal.Mucha.Service2
+    dependsOn: service1
+    steps:
+    - template: /pipelines/azure-pipelines.yml
+      parameters:
+        serviceName: Michal.Mucha.Service2
+
+  - job: service3
+    displayName: Michal.Mucha.Service3
+    dependsOn: service2
+    steps:
+    - template: /pipelines/azure-pipelines.yml
+      parameters:
+        serviceName: Michal.Mucha.Service3
