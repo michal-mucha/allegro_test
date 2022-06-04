@@ -15,11 +15,11 @@ if __name__ == "__main__":
     with open(docker_file_template_path, "r") as dockerfile_content:
         for line in dockerfile_content.readlines():
             if re.search(service_pointer_pattern, line) is not None:
-                line_with_pointer_replaced = re.sub(service_pointer_pattern, service_name, line)
+                line_with_pointer_replaced = re.sub(service_pointer_pattern, f'{service_name}.dll', line)
                 final_docker_file_content.append(line_with_pointer_replaced)
                 continue
             final_docker_file_content.append(line)
 
     print(f'Writing Docker file to {path_of_final_docker_file}')
     with open(path_of_final_docker_file, 'w') as docker_file:
-        docker_file.write("\n".join(final_docker_file_content))
+        docker_file.write("".join(final_docker_file_content))
