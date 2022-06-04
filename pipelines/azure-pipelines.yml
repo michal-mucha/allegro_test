@@ -51,7 +51,7 @@ jobs:
       inputs:
         scriptSource: filePath
         scriptPath: $(Build.SourcesDirectory)/pipelines/python_scripts/create_dockerfile_from_template.py
-        arguments:  $(Build.SourcesDirectory)/Dockerfile.template, $(Build.SourcesDirectory)/${{ parameters.serviceName }}/Dockerfile, ${{ parameters.serviceName }}
+        arguments:  $(Build.SourcesDirectory)/Dockerfile.template $(Build.SourcesDirectory)/${{ parameters.serviceName }}/Dockerfile ${{ parameters.serviceName }}
         failOnStderr: true
       #condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
 
