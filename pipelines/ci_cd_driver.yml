@@ -20,9 +20,13 @@ jobs:
   - template: /pipelines/azure-pipelines.yml
     parameters:
       serviceName: 'Michal.Mucha.Service1'
+      jobName: michal.mucha.service1
   - template: /pipelines/azure-pipelines.yml
     parameters:
       serviceName: 'Michal.Mucha.Service2'
+      jobName: michal.mucha.service2
+      dependsOn: michal.mucha.service1
   - template: /pipelines/azure-pipelines.yml
     parameters:
       serviceName: 'Michal.Mucha.Service3'
+      dependsOn: michal.mucha.service2
