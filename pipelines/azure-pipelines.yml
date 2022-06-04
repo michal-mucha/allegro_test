@@ -1,13 +1,13 @@
 parameters:
   - name: serviceName
   - name: dependsOn
-    default: ''
+    default: 'gfgg'
   - name: jobName
-    default: ''
+    default: 'ggg'
 
 jobs:
   - job:
-    dependsOn: {{ parameters.dependsOn }}
+    dependsOn: other
     displayName: ${{ parameters.serviceName }}
     steps:
     - task: UseDotNet@2
