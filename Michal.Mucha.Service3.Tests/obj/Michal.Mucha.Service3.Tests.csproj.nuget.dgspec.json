@@ -1,30 +1,29 @@
 {
   "format": 1,
   "restore": {
-    "C:\\home\\allegro_test\\Michal.Mucha.Service3.Tests\\Michal.Mucha.Service3.Tests.csproj": {}
+    "/home/michal/allegro/allegro_test/Michal.Mucha.Service3.Tests/Michal.Mucha.Service3.Tests.csproj": {}
   },
   "projects": {
-    "C:\\home\\allegro_test\\Michal.Mucha.Service3.Tests\\Michal.Mucha.Service3.Tests.csproj": {
+    "/home/michal/allegro/allegro_test/Michal.Mucha.Service3.Tests/Michal.Mucha.Service3.Tests.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\home\\allegro_test\\Michal.Mucha.Service3.Tests\\Michal.Mucha.Service3.Tests.csproj",
+        "projectUniqueName": "/home/michal/allegro/allegro_test/Michal.Mucha.Service3.Tests/Michal.Mucha.Service3.Tests.csproj",
         "projectName": "Michal.Mucha.Service3.Tests",
-        "projectPath": "C:\\home\\allegro_test\\Michal.Mucha.Service3.Tests\\Michal.Mucha.Service3.Tests.csproj",
-        "packagesPath": "C:\\Users\\jpbf63\\.nuget\\packages\\",
-        "outputPath": "C:\\home\\allegro_test\\Michal.Mucha.Service3.Tests\\obj\\",
+        "projectPath": "/home/michal/allegro/allegro_test/Michal.Mucha.Service3.Tests/Michal.Mucha.Service3.Tests.csproj",
+        "packagesPath": "/home/michal/.nuget/packages/",
+        "outputPath": "/home/michal/allegro/allegro_test/Michal.Mucha.Service3.Tests/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\jpbf63\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "/home/michal/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net6.0"
+          "netcoreapp3.1"
         ],
         "sources": {
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net6.0": {
-            "targetAlias": "net6.0",
+          "netcoreapp3.1": {
             "projectReferences": {}
           }
         },
@@ -35,28 +34,23 @@
         }
       },
       "frameworks": {
-        "net6.0": {
-          "targetAlias": "net6.0",
+        "netcoreapp3.1": {
           "dependencies": {
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
-              "version": "[17.1.0, )"
+              "version": "[16.5.0, )"
             },
             "coverlet.collector": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
               "target": "Package",
-              "version": "[3.1.2, )"
+              "version": "[1.2.0, )"
             },
             "xunit": {
               "target": "Package",
-              "version": "[2.4.1, )"
+              "version": "[2.4.0, )"
             },
             "xunit.runner.visualstudio": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
               "target": "Package",
-              "version": "[2.4.3, )"
+              "version": "[2.4.0, )"
             }
           },
           "imports": [
@@ -74,7 +68,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/3.1.419/RuntimeIdentifierGraph.json"
         }
       }
     }
