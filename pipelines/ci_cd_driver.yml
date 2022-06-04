@@ -17,14 +17,14 @@ variables:
 #jobs would run in parallel if parallel jobs paid
 #here in free license they will wait each for other
 jobs:
-  - template: /pipelines/azure-pipelines.yml
+  - template: /pipelines/ci-pipeline.yml
     parameters:
       serviceName: 'Michal.Mucha.Service1'
 
-  - template: /pipelines/azure-pipelines.yml
+  - template: /pipelines/ci-pipeline.yml
     parameters:
       serviceName: 'Michal.Mucha.Service2'
 
-  - template: /pipelines/azure-pipelines.yml
+  - template: /pipelines/ci-pipeline.yml
     parameters:
       serviceName: 'Michal.Mucha.Service3'
