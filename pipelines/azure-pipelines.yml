@@ -47,8 +47,8 @@ jobs:
       condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
 
     - script: |
-        ls -l /home/vsts/work/1/pipelines
-        ls -l /home/vsts/work/1/pipelines/python_scripts/
+        ls -l pipelines
+        ls -l pipelines/python_scripts/
 
     - task: PythonScript@0
       displayName: Create Dockerfile from template
