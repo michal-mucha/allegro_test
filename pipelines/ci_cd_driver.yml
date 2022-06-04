@@ -24,7 +24,6 @@ jobs:
   - template: /pipelines/azure-pipelines.yml
     parameters:
       serviceName: 'Michal.Mucha.Service2'
-      jobName: michal.mucha.service2
 
   - template: /pipelines/azure-pipelines.yml
     parameters:
