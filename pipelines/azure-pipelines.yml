@@ -46,19 +46,12 @@ jobs:
         Dockerfile: ${{ parameters.serviceName }}/Dockerfile.template
       condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
 
-    - script: |
-        cd pipelines
-        pwd
-        cd python_scripts
-        pwd
-        echo $Build.SourcesDirectory
-
     - task: PythonScript@0
       displayName: Create Dockerfile from template
       inputs:
         scriptSource: filePath
         scriptPath: $(Build.SourcesDirectory)/pipelines/python_scripts/create_dockerfile_from_template.py
-        arguments:  $(Pipeline.Workspace)/Dockerfile.template, $(Pipeline.Workspace)/${{ parameters.serviceName }}/Dockerfile, ${{ parameters.serviceName }}
+        arguments:  $(Build.SourcesDirectory)/Dockerfile.template, $(Build.SourcesDirectory)/${{ parameters.serviceName }}/Dockerfile, ${{ parameters.serviceName }}
         failOnStderr: true
       #condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
 
