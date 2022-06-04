@@ -1,64 +1,67 @@
 parameters:
   - name: serviceName
 
-steps:
-  - task: UseDotNet@2
-    displayName: 'Use .NET Core sdk 3.1.x'
-    inputs:
-      packageType: sdk
-      version: 3.1.x
-      installationPath: $(Agent.ToolsDirectory)/dotnet
+jobs:
+  - job:
+    displayName: ${{ parameters.serviceName }}
+    steps:
+    - task: UseDotNet@2
+      displayName: 'Use .NET Core sdk 3.1.x'
+      inputs:
+        packageType: sdk
+        version: 3.1.x
+        installationPath: $(Agent.ToolsDirectory)/dotnet
 
-  - task: DotNetCoreCLI@2
-    displayName: 'Restores the dependencies and tools of a project'
-    inputs:
-      command: 'restore'
-      projects: '${{ parameters.serviceName }}/*.csproj'
+    - task: DotNetCoreCLI@2
+      displayName: 'Restores the dependencies and tools of a project'
+      inputs:
+        command: 'restore'
+        projects: '${{ parameters.serviceName }}/*.csproj'
 
-  - task: DotNetCoreCLI@2
-    displayName: 'Build ${{ parameters.serviceName }}'
-    inputs:
-      command: 'build'
-      projects: '${{ parameters.serviceName }}/*.csproj'
+    - task: DotNetCoreCLI@2
+      displayName: 'Build ${{ parameters.serviceName }}'
+      inputs:
+        command: 'build'
+        projects: '${{ parameters.serviceName }}/*.csproj'
 
-  - task: DotNetCoreCLI@2
-    displayName: 'Test ${{ parameters.serviceName }}'
-    inputs:
-      command: 'test'
-      projects: '${{ parameters.serviceName }}.Tests/${{ parameters.serviceName }}.Tests.csproj'
+    - task: DotNetCoreCLI@2
+      displayName: 'Test ${{ parameters.serviceName }}'
+      inputs:
+        command: 'test'
+        projects: '${{ parameters.serviceName }}.Tests/${{ parameters.serviceName }}.Tests.csproj'
 
-  - pwsh: |
-      $lowercase = $env:servicename.ToLower()
-      Write-Host "##vso[task.setvariable variable=serviceNameLowerCase;]$lowercase"
-    displayName: Convert service name to lowercase
-    env:
-      servicename: ${{ parameters.serviceName }}
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    - pwsh: |
+        $lowercase = $env:servicename.ToLower()
+        Write-Host "##vso[task.setvariable variable=serviceNameLowerCase;]$lowercase"
+      displayName: Convert service name to lowercase
+      env:
+        servicename: ${{ parameters.serviceName }}
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
 
-  #take Dockerfile.template, replace marker {{service_name_pointer}} with service name
-  #which is currently deployed and create Dockerfile in service project folder e.g Michal.Mucha.Service1
-  - task: PythonScript@0
-    displayName: Create Dockerfile from template
-    inputs:
-      scriptSource: filePath
-      scriptPath: $(Build.SourcesDirectory)/pipelines/python_scripts/create_dockerfile_from_template.py
-      arguments: $(Build.SourcesDirectory)/Dockerfile.template $(Build.SourcesDirectory)/${{ parameters.serviceName }}/Dockerfile ${{ parameters.serviceName }}
-      failOnStderr: true
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+#take Dockerfile.template, replace marker {{service_name_pointer}} with service name
+#which is currently deployed and create Dockerfile in service project folder e.g Michal.Mucha.Service1
+    - task: PythonScript@0
+      displayName: Create Dockerfile from template
+      inputs:
+        scriptSource: filePath
+        scriptPath: $(Build.SourcesDirectory)/pipelines/python_scripts/create_dockerfile_from_template.py
+        arguments:  $(Build.SourcesDirectory)/Dockerfile.template $(Build.SourcesDirectory)/${{ parameters.serviceName }}/Dockerfile ${{ parameters.serviceName }}
+        failOnStderr: true
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
 
-  - task: Docker@2
-    displayName: Build an image of ${{ parameters.serviceName }}
-    inputs:
-      repository: $(dockerId)/$(serviceNameLowerCase)
-      command: build
-      Dockerfile: ${{ parameters.serviceName }}/Dockerfile
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    - task: Docker@2
+      displayName: Build an image of ${{ parameters.serviceName }}
+      inputs:
+        repository: $(dockerId)/$(serviceNameLowerCase)
+        command: build
+        Dockerfile: ${{ parameters.serviceName }}/Dockerfile
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
 
-  - task: Docker@2
-    displayName: Push image of ${{ parameters.serviceName }} to Docker repository
-    inputs:
-      containerRegistry: |
-        $(dockerHub)
-      repository: $(dockerId)/$(serviceNameLowerCase)
-      command: push
-    condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+    - task: Docker@2
+      displayName: Push image of ${{ parameters.serviceName }} to Docker repository
+      inputs:
+        containerRegistry: |
+          $(dockerHub)
+        repository: $(dockerId)/$(serviceNameLowerCase)
+        command: push
+      condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
