@@ -3,7 +3,7 @@ parameters:
   - name: dependsOn
     default: ''
   - name: jobName
-    defult: ''
+    default: ''
 
 jobs:
   - job:
