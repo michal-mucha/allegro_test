@@ -1,10 +1,14 @@
-namespace Michal.Mucha.Service3.Tests;
+using System;
+using Xunit;
 
-public class UnitTest1
+namespace Michal.Mucha.Service3.Tests
 {
-    [Fact]
-    public void Test1()
+    public class UnitTest1
     {
+        [Fact]
+        public void Test1()
+        {
 
+        }
     }
 }
