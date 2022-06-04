@@ -54,7 +54,7 @@ jobs:
       inputs:
         repository: $(dockerId)/$(serviceNameLowerCase)
         command: build
-        Dockerfile: ${{ parameters.serviceName }}/Dockerfile.template
+        Dockerfile: ${{ parameters.serviceName }}/Dockerfile
       condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
 
     - task: Docker@2
