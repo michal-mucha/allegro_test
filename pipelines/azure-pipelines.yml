@@ -5,7 +5,7 @@ parameters:
   - name: jobName
 
 jobs:
-  - job: ${{ parameters.jobName }}
+  - job: kl
     dependsOn: {{ parameters.dependsOn }}
     displayName: ${{ parameters.serviceName }}
     steps:
