@@ -1,11 +1,10 @@
 parameters:
-- name: serviceName
-- name: dependsOn
-- name: jobName
+  - name: serviceName
+  - name: dependsOn
+  - name: jobName
 
 jobs:
   - job:
-    dependsOn: {{ parameters.dependsOn }}
     displayName: ${{ parameters.serviceName }}
     steps:
     - task: UseDotNet@2
