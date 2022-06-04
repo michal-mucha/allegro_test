@@ -1,9 +1,5 @@
 parameters:
   - name: serviceName
-  - name: dependsOn
-    default: [ ]
-  - name: jobName
-    default: 'ggg'
 
 steps:
   - task: UseDotNet@2
