@@ -16,24 +16,24 @@ variables:
 
 
 jobs:
-  - job: michal.mucha.service1
+  - job: service1
     displayName: Michal.Mucha.Service1
     steps:
     - template: /pipelines/azure-pipelines.yml
       parameters:
         serviceName: Michal.Mucha.Service1
 
-  - job: michal.mucha.service2
+  - job: service2
     displayName: Michal.Mucha.Service2
-    dependsOn: michal.mucha.service1
+    dependsOn: service1
     steps:
     - template: /pipelines/azure-pipelines.yml
       parameters:
         serviceName: Michal.Mucha.Service2
 
-  - job: michal.mucha.service3
+  - job: service3
     displayName: Michal.Mucha.Service3
-    dependsOn: michal.mucha.service2
+    dependsOn: service2
     steps:
     - template: /pipelines/azure-pipelines.yml
       parameters:
