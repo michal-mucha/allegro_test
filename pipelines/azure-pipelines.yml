@@ -47,12 +47,13 @@ jobs:
       condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
 
     - task: PythonScript@0
+      displayName: Create Dockerfile from template
       inputs:
         scriptSource: filePath
-        scriptPath: /pipelines/python_scripts/create_dockerfile_from_template.py
+        scriptPath: $(Pipeline.Workspace)/pipelines/python_scripts/create_dockerfile_from_template.py
         arguments:  $(Pipeline.Workspace)/Dockerfile.template, $(Pipeline.Workspace)/${{ parameters.serviceName }}/Dockerfile, ${{ parameters.serviceName }}
         failOnStderr: true
-        #condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
+      #condition: and(succeeded(), eq(variables['Build.SourceBranch'], 'refs/heads/main'))
 
     - task: Docker@2
       displayName: Push image of ${{ parameters.serviceName }} to Docker repository
