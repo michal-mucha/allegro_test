@@ -1,7 +1,8 @@
 parameters:
-  - name: serviceName
-  - name: dependsOn
-  - name: jobName
+- name: serviceName
+- name: dependsOn
+  default: ''
+- name: jobName
 
 jobs:
   - job:
